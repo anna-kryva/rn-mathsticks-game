@@ -1,12 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { ConfigurationScreen } from './src/screens/ConfigurationScreen';
+import { GameScreen } from './src/screens/GameScreen';
+import { IConfiguration } from './src/types';
 
 export default function App() {
+  const [configuration, setConfiguration] = useState<
+    IConfiguration | undefined
+  >(undefined);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {configuration ? (
+        <GameScreen configuration={configuration} goBack={() => setConfiguration(undefined)}/>
+      ) : (
+        <ConfigurationScreen
+          onSubmit={(value: IConfiguration) => setConfiguration(value)}
+        />
+      )}
     </View>
   );
 }
@@ -14,8 +25,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
