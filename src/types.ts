@@ -15,7 +15,14 @@ export interface IGameState {
   playerIndex: number;
 }
 
+export interface IGameReducer {
+  reset: () => void;
+  makeTurn: (takenMatches: number) => void;
+}
+
 export interface IPlayer {
+  leftMatches: number;
+  takenMatches: number;
   isTurn: boolean;
   makeTurn: (count: number) => void;
 }

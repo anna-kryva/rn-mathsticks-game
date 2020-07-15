@@ -1,10 +1,10 @@
-import { useReducer, useCallback } from 'react';
+import { useReducer } from 'react';
 import { gameReducer } from '../reducer/gameReducer';
 
-import { IGameState } from '../types';
+import { IGameState, IGameReducer } from '../types';
 import { MAKE_TURN, RESET } from '../types';
 
-const useGameState = (initialState: IGameState) => {
+const useGameReducer = (initialState: IGameState) : [IGameState, IGameReducer] => {
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
   return [
@@ -17,4 +17,4 @@ const useGameState = (initialState: IGameState) => {
   ];
 };
 
-export default useGameState;
+export default useGameReducer;
