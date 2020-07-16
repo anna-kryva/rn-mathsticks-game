@@ -9,7 +9,7 @@ import { COLORS } from '../theme';
 const useAIPlayer = (player: PlayerConfiguration) => {
   const { isTurn, makeMove } = player;
   const [isDelayed, setIsDelayed] = useState<boolean>(false);
-  let selectedNumber = 0;
+  const [selectedNumber, setSelectedNumber] = useState<number>(0);
 
   useEffect(() => {
     const delayedMove = delay(1000);
@@ -17,7 +17,7 @@ const useAIPlayer = (player: PlayerConfiguration) => {
     if (isTurn) {
       const takeMatches = async () => {
         setIsDelayed(true);
-        selectedNumber = getSelectedNumber(player);
+        setSelectedNumber(getSelectedNumber(player));
         await delayedMove;
         makeMove(selectedNumber);
       };
@@ -30,11 +30,14 @@ const useAIPlayer = (player: PlayerConfiguration) => {
     };
   }, [isTurn]);
 
-  return (
+  return [
     <View style={styles.container}>
       <Text style={styles.status}>{isDelayed ? `AI is thinking...` : ''}</Text>
-    </View>
-  );
+    </View>,
+    `AI has chosen ${selectedNumber} matchstick${
+      selectedNumber != 1 ? 's' : ''
+    }.`,
+  ];
 };
 
 const styles = StyleSheet.create({
