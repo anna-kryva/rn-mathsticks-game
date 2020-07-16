@@ -25,8 +25,6 @@ export const ConfigurationScreen: React.FC<Props> = ({ onSubmit }) => {
       name: name,
       firstMoveByAi: firstMoveAI,
     });
-    setName('');
-    setFirstMoveAI(false);
   };
 
   return (

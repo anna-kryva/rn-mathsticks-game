@@ -20,9 +20,11 @@ export interface IGameReducer {
   makeTurn: (takenMatches: number) => void;
 }
 
-export interface IPlayer {
+export interface PlayerConfiguration {
+  totalMatches: number;
   leftMatches: number;
   takenMatches: number;
   isTurn: boolean;
-  makeTurn: (count: number) => void;
+  makeMove: (count: number) => void;
+  firstMover: boolean,
 }

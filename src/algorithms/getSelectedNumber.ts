@@ -1,4 +1,4 @@
-import { IPlayer } from '../types';
+import { PlayerConfiguration } from '../types';
 
 const getProperResult = (
   takenMatches: number,
@@ -12,7 +12,7 @@ const getProperResult = (
   }
 };
 
-export default function getSelectedMatches(player: IPlayer): number {
+export default function getSelectedMatches(player: PlayerConfiguration): number {
   const { totalMatches, leftMatches, takenMatches, firstMover } = player;
 
   if (leftMatches <= 0) {
