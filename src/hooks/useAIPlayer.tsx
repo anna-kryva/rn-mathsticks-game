@@ -19,12 +19,12 @@ const useAIPlayer = (player: PlayerConfiguration): JSX.Element => {
     if (isTurn) {
       (async () => {
         const count = getSelectedNumber(player);
-        
+
         setIsDelayed(true);
         await delayedMove;
         makeMove(count);
 
-        const statusEvent = renderStatusEvent(count);
+        const statusEvent = renderStatusEvent(count, true);
         onEvent(statusEvent);
       })();
     } else {
@@ -47,6 +47,8 @@ const useAIPlayer = (player: PlayerConfiguration): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 0.5,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   status: {
     fontSize: 20,

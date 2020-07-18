@@ -1,8 +1,8 @@
 import { StatusEvent } from '../types';
 
-const renderStatusEvent = (selectedNumber: number): StatusEvent => ({
+const renderStatusEvent = (selectedNumber: number, isAI: boolean): StatusEvent => ({
   timestamp: Date.now(),
-  status: `Player has chosen ${selectedNumber} matchstick${
+  status: `${isAI ? 'AI' : 'Player'} has chosen ${selectedNumber} matchstick${
     selectedNumber != 1 ? 's' : ''
   }.`,
 });
