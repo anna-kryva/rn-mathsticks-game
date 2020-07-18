@@ -1,13 +1,12 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { MatchButton } from '../components/MatchButton';
 import { PlayerConfiguration } from '../types';
+import renderStatusEvent from '../utils/renderStatusEvent';
 
-const useRealPlayer = (player: PlayerConfiguration) => {
-  const { leftMatches, isTurn, makeMove } = player;
+const useRealPlayer = (player: PlayerConfiguration): JSX.Element => {
+  const { leftMatches, isTurn, makeMove, onEvent } = player;
   const [isDisabled, setIsDisabled] = useState<boolean>(isTurn);
-  const [selectedNumber, setSelectedNumber] = useState<number>(0);
 
   useEffect(() => {
     setIsDisabled(!isTurn);
@@ -15,7 +14,9 @@ const useRealPlayer = (player: PlayerConfiguration) => {
 
   const selectNumberHandler = (count: number): void => {
     makeMove(count);
-    setSelectedNumber(count);
+
+    const statusEvent = renderStatusEvent(count);
+    onEvent(statusEvent);
   };
 
   const buttons = [1, 2, 3].map((value) => {
@@ -31,14 +32,11 @@ const useRealPlayer = (player: PlayerConfiguration) => {
     }
   });
 
-  return [
+  return (
     <View style={styles.container}>
       <View style={styles.buttonsBlock}>{buttons}</View>
-    </View>,
-    `You have chosen ${selectedNumber} matchstick${
-      selectedNumber != 1 ? 's' : ''
-    }.`,
-  ];
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

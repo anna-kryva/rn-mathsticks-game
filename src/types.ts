@@ -26,5 +26,11 @@ export interface PlayerConfiguration {
   takenMatches: number;
   isTurn: boolean;
   makeMove: (count: number) => void;
-  firstMover: boolean,
+  firstMover: boolean;
+  onEvent: (statusEvent: StatusEvent) => void;
+}
+
+export interface StatusEvent {
+  timestamp: number;
+  status: string;
 }
