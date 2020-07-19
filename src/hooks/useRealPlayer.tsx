@@ -35,9 +35,9 @@ const useRealPlayer = (player: PlayerConfiguration): JSX.Element => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.question}>
+      {/* <Text style={styles.question}>
         {isDisabled ? '' : 'How many matches do you take?'}
-      </Text>
+      </Text> */}
       <View style={styles.buttonsBlock}>{buttons}</View>
     </View>
   );

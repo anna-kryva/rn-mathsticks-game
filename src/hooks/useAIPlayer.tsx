@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import delay from 'delay';
-
 import { View, Text, StyleSheet } from 'react-native';
 
 import getSelectedNumber from '../algorithms/getSelectedNumber';
 import renderStatusEvent from '../utils/renderStatusEvent';
+import delay from '../utils/delay';
 
 import { PlayerConfiguration } from '../types';
 import { COLORS } from '../theme';
@@ -14,14 +13,14 @@ const useAIPlayer = (player: PlayerConfiguration): JSX.Element => {
   const [isDelayed, setIsDelayed] = useState<boolean>(false);
 
   useEffect(() => {
-    const delayedMove = delay(1000);
+    const timeout = delay(2000);
 
     if (isTurn) {
       (async () => {
         const count = getSelectedNumber(player);
 
         setIsDelayed(true);
-        await delayedMove;
+        await timeout;
         makeMove(count);
 
         const statusEvent = renderStatusEvent(count, true);
@@ -31,7 +30,7 @@ const useAIPlayer = (player: PlayerConfiguration): JSX.Element => {
       setIsDelayed(false);
     }
     return () => {
-      delayedMove.clear();
+      timeout.cancel();
     };
   }, [isTurn]);
 
@@ -52,7 +51,8 @@ const styles = StyleSheet.create({
   },
   status: {
     fontSize: 20,
-    color: COLORS.WHITE,
+    fontWeight: 'bold',
+    color: COLORS.GOLD,
     textAlign: 'center',
   },
 });
