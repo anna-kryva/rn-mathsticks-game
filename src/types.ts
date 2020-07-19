@@ -7,7 +7,7 @@ export type ActionType =
 
 export interface IConfiguration {
   name: string;
-  firstMoveByAi: boolean;
+  firstMoveByAI: boolean;
 }
 
 export interface IGameState {

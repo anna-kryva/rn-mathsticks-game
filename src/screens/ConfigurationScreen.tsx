@@ -9,28 +9,35 @@ import {
 } from 'react-native';
 import { COLORS } from '../theme';
 import { IConfiguration } from '../types';
+import { WELCOME_MESSAGE } from '../constants';
 
 interface Props {
-  onSubmit: (config: IConfiguration) => void;
+  configuration: IConfiguration | undefined;
+  startGame: (config: IConfiguration) => void;
 }
 
-export const ConfigurationScreen: React.FC<Props> = ({ onSubmit }) => {
-  const [name, setName] = useState<string>('');
-  const [firstMoveAI, setFirstMoveAI] = useState<boolean>(false);
+export const ConfigurationScreen: React.FC<Props> = ({
+  configuration,
+  startGame,
+}) => {
+  const [name, setName] = useState<string>(configuration?.name ?? '');
+  const [firstMoveByAI, setFirstMoveByAI] = useState<boolean>(
+    configuration?.firstMoveByAI ?? false
+  );
 
-  const toggleSwitch = () => setFirstMoveAI((previousState) => !previousState);
+  const toggleSwitch = () =>
+    setFirstMoveByAI((previousState) => !previousState);
 
   const pressHandler = () => {
-    onSubmit({
-      name: name,
-      firstMoveByAi: firstMoveAI,
+    startGame({
+      name,
+      firstMoveByAI,
     });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome!</Text>
-      <Text style={styles.text}>To start the game, enter your name below</Text>
+      <Text style={styles.text}>{WELCOME_MESSAGE}</Text>
 
       <View style={styles.inputBlock}>
         <Text style={styles.inputLabel}>Name:</Text>
@@ -48,9 +55,9 @@ export const ConfigurationScreen: React.FC<Props> = ({ onSubmit }) => {
         <Text style={styles.switchLabel}>The first move by AI</Text>
         <Switch
           onValueChange={toggleSwitch}
-          value={firstMoveAI}
+          value={firstMoveByAI}
           trackColor={{ false: COLORS.GRAY, true: COLORS.DARK_GOLD }}
-          thumbColor={firstMoveAI ? COLORS.GOLD : COLORS.WHITE}
+          thumbColor={firstMoveByAI ? COLORS.GOLD : COLORS.WHITE}
         />
       </View>
 
