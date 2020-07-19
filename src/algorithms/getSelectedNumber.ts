@@ -39,6 +39,6 @@ export default function getSelectedMatches(player: PlayerConfiguration): number 
     case 7:
       return firstMover ? getProperResult(takenMatches, 3, 2) : 3;
     default:
-      throw new Error('Error');
+      return 0;
   }
 }
