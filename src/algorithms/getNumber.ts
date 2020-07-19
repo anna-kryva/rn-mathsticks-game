@@ -12,7 +12,7 @@ const getProperResult = (
   }
 };
 
-export default function getSelectedMatches(player: PlayerConfiguration): number {
+export default function getNumber(player: PlayerConfiguration): number {
   const { totalMatches, leftMatches, takenMatches, firstMover } = player;
 
   if (leftMatches <= 0) {

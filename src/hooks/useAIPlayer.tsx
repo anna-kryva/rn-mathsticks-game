@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import getSelectedNumber from '../algorithms/getSelectedNumber';
+import getNumber from '../algorithms/getNumber';
 import renderStatusEvent from '../utils/renderStatusEvent';
 import delay from '../utils/delay';
 
@@ -17,7 +17,7 @@ const useAIPlayer = (player: PlayerConfiguration): JSX.Element => {
 
     if (isTurn) {
       (async () => {
-        const count = getSelectedNumber(player);
+        const count = getNumber(player);
 
         setIsDelayed(true);
         await timeout;
