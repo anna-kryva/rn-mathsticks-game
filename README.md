@@ -8,6 +8,6 @@ Implementing the next game using React Native:
 
 
 To start the application, run `npm start`.  
-***Tip:*** *Expo should be locally installed.*  Hint
+***Tip:*** *Expo should be locally installed.*
 
 ***Warning:*** Application is not tested on iOS devices.
